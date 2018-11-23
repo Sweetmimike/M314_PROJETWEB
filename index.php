@@ -5,6 +5,7 @@
 	<title>Index</title>
 </head>
 <body>
+	<p>salut comment ca va ?</p>
 	
 </body>
 </html>
