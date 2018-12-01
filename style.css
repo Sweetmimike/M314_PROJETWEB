@@ -1,0 +1,71 @@
+/*	GENERAL  */
+
+html, header, nav {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Open sans';
+	background-color: #FFFFFF;
+	color: #515052;
+	margin: 10px;
+}
+
+nav a {
+	text-decoration: none;
+	color: #515052;
+}
+
+nav a:hover {
+	border-bottom: 2px solid black;
+	border-color: #515052;
+}
+
+footer {
+	background-color: 
+}
+
+
+ul {
+	text-align: center;
+	padding: 15px;
+	margin: 0;
+}
+
+li {
+	display: inline;
+	margin: 0 20px 0 20px;
+}
+
+hr {
+	width: 65%;
+}
+
+
+
+/*	CONTACT PAGE  */
+
+#form-container {
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	margin: auto;
+	width: 30%;
+	background-color: #F1F1F1;
+	padding: 10px;
+}
+
+#form-container input, textarea {
+	width: 97%;
+	display: block;
+	margin-bottom: 8px;
+}
+
+#form-container input[type=submit] {
+	width: unset;
+	padding: 4px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 2px;
+}
+
+
