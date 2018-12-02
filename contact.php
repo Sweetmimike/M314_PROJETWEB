@@ -8,9 +8,7 @@
 </head>
 <body>
 
-	<header>
-		
-	</header>
+	<?php include('header.php') ?>
 
 	<section>
 		<div id="form-container">
@@ -23,10 +21,9 @@
 		</div>
 	</section>
 	
-	<footer>
-		
-	</footer>
+	<?php include('footer.php'); ?>
 
+	
 	<?php 
 
 	if(isset($_POST['envoyer'])) {

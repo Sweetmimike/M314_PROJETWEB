@@ -7,16 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<header>
-		<nav>
-			<ul id="navbar">
-				<li class="navitem"><a href="index.php">Accueil</a></li>
-				<li class="navitem"><a href="">Produits</a></li>
-				<li class="navitem"><a href="contact.php">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
-	<hr>
+	<?php include('header.php'); ?>
 
 	<section>
 		<div>
@@ -29,8 +20,7 @@
 		</div>
 	</section>
 
-	<hr>
-	<footer>Projet PHP - Carpentier Aurélien - Allari Damien - G1 - IUT de Nice</footer>
+	<?php include('footer.php'); ?>
 	
 </body>
 </html>

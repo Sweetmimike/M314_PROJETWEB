@@ -1,3 +1,6 @@
+/* Blue color : #00AAF2 */
+/* Grey color : #5f5f5f */
+
 /*	GENERAL  */
 
 html, header, nav {
@@ -9,7 +12,43 @@ body {
 	font-family: 'Open sans';
 	background-color: #FFFFFF;
 	color: #515052;
-	margin: 10px;
+	margin: 0 10px 10px 10px;
+}
+
+#sign {
+	display: block;
+	font-size: small;
+}
+
+#sign a {
+	text-decoration: none;
+	color: white;
+}
+
+#sign ul {
+	display: block;
+	float: right;
+	margin: 10px 0 10px 0;
+	background-color: #00AAF2;
+	padding: 20px;
+	width: 100%;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#sign li {
+	float: right;
+	display: inline;
+	margin: 0 10px 0 10px;
+	color: white;
+}
+
+nav {
+	font-size: large;
+}
+
+nav ul {
+	display: block;
+	clear: both;
 }
 
 nav a {
@@ -19,18 +58,16 @@ nav a {
 
 nav a:hover {
 	border-bottom: 2px solid black;
-	border-color: #515052;
+	border-color: #00AAF2;
 }
 
-
-
-ul {
+nav ul {
 	text-align: center;
 	padding: 15px;
 	margin: 0;
 }
 
-li {
+nav li {
 	display: inline;
 	margin: 0 20px 0 20px;
 }
@@ -48,7 +85,10 @@ hr {
 
 #form-container {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 30%;
 	background-color: #F1F1F1;
 	padding: 10px;
@@ -66,11 +106,33 @@ hr {
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 2px;
-	background-color: #3D3D3D;
+	background-color: #00AAF2;
 	color: white;
 	border: none;
 	border-radius: 2px;
 	font-size: medium;
+}
+
+/* PRODUITS PAGE */
+
+#table-produit {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#table-produit th {
+	background-color: #5f5f5f;
+	color: white;
+}
+#table-produit th, #table-produit td{
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+
+}
+
+#table-produit td {
+	font-size: small;
 }
 
 
