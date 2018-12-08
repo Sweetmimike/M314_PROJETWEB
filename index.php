@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Accueil</title>
+	
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>

@@ -21,7 +21,7 @@
 			<tr>
 				<td>Produit 1</td>
 				<td>Ceci est le produit 1</td>
-				<td>10.00</td>
+				<td>10.00 <img src="img/plus.png" class="plus" alt="plus"></td>
 			</tr>
 			<tr>
 				<td>Produit 2</td>

@@ -2,7 +2,7 @@
 	<div id="sign">
 		<ul>
 			<li class="signitem"><a href="">S'inscrire</a></li>
-			<li class="signitem"><a href="">Connexion</a></li>
+			<li class="signitem"><a href="connexion.php">Connexion</a></li>
 		</ul>		
 
 	</div>
