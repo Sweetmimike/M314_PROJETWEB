@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 try {
 
@@ -42,38 +43,55 @@ try {
             </div>
         </section>
 
-        <?php   
-
-        echo $_POST['nom'];
-        echo $_POST['prenom'];
-        echo $_POST['email'];
+        <?php
+        
+        //expression régulière permettant de verifier la validité de l'adresse mail
+        $expr_mail = "#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{1,}$#";
 
         if(isset($_POST['envoyer'])) {
             if(!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email']) && !empty($_POST['mdp']) && !empty($_POST['c_mdp'])
                && !empty($_POST['rue']) && !empty($_POST['ville']) && !empty($_POST['pays'])) {
-                if($_POST['mdp'] == $_POST['c_mdp']) {
-                    $req = $bdd->prepare('insert into client (nom, prenom, email,rue, ville, pays, mdp) values(:nom, :prenom, :email, :rue, :ville, :pays, :mdp)');
-                    $req->execute(array(
-                        'nom' => $_POST['nom'],
-                        'prenom' => $_POST['prenom'],
-                        'email' => $_POST['email'],
-                        'rue' => $_POST['rue'],
-                        'ville' => $_POST['ville'],
-                        'pays' => $_POST['pays'],
-                        'mdp' => $_POST['mdp']));
-                    echo '<p>Inscription reussi !</p>';
+                
+                /* test de l'adresse mail*/
+                if(preg_match($expr_mail, $_POST['email'])) {
+                    if($_POST['mdp'] == $_POST['c_mdp']) {
+
+                        /* Test pour savoir si l'utilisateur est déjà inscrit */
+                        $req_check = $bdd->prepare('select email from client where email = :email');
+                        $req_check->execute(array('email' => $_POST['email']));
+
+                        /* Si on ne trouve pas de résultat alors le client peut être inscrit */
+                        if(!($req_check->fetch())) {
+
+                            $req = $bdd->prepare('insert into client (nom, prenom, email,rue, ville, pays, mdp) values(:nom, :prenom, :email, :rue, :ville, :pays, :mdp)');
+                            $req->execute(array(
+                                'nom' => $_POST['nom'],
+                                'prenom' => $_POST['prenom'],
+                                'email' => $_POST['email'],
+                                'rue' => $_POST['rue'],
+                                'ville' => $_POST['ville'],
+                                'pays' => $_POST['pays'],
+                                'mdp' => $_POST['mdp']));
+                            echo '<p class="rep_inscription">Inscription reussi !</p>';
+                            echo '<p class="rep_inscription"><a href="connexion.php">Cliquez ici pour vous connecter</a></p>';
+                        } else {
+                            echo '<p class="rep_inscription">Cette adresse email est déjà enregistrée !</p>';
+                        }
+                    } else {
+                        echo '<p class="rep_inscription">Les mots de passes doivent être identiques</p>';
+                    }
                 } else {
-                    echo '<p>Les mots de passes doivent être identiques</p>';
+                    echo '<p class="rep_inscription">L\'email n\'est pas conforme, il doit etre du type aa@aa.aa</p>';
                 }
             } else {
-                echo '<p>Tous les champs sont obligatoires !</p>';
+                echo '<p class="rep_inscription">Tous les champs sont obligatoires !</p>';
             }
         }
 
         ?>
 
 
-        <?php include('footer.php');?>
+        <?php include('footer.php'); ?>
 
 
 

@@ -140,4 +140,11 @@ hr {
     float: right;
 }
 
+/* INSCRIPTION PAGE */
+
+.rep_inscription {
+    text-align: center;
+    font-weight: bold;
+}
+
 
