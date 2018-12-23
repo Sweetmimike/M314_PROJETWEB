@@ -15,6 +15,8 @@ body {
 	margin: 0 10px 10px 10px;
 }
 
+
+
 #sign {
 	display: block;
 	font-size: small;
@@ -40,6 +42,14 @@ body {
 	display: inline;
 	margin: 0 10px 0 10px;
 	color: white;
+}
+
+#sign .header_name {
+    float: left;
+    margin-left: 20px;
+    font-weight: bold;
+    font-size: medium;
+    position: absolute;
 }
 
 nav {
