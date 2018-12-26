@@ -36,7 +36,6 @@
 
 			mail($destinataire, $objet, $message, $headers);
 		}
-		
 	}
 
 	?>
