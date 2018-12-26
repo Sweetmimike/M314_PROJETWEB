@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 <?php 
 session_start();
 ?>
 
 
+=======
+>>>>>>> 594b0e2b7cc56cde0edac4fdf8cf322589a8d94e
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,6 +28,7 @@ session_start();
 		</div>
 	</section>
    
+<<<<<<< HEAD
 
    
     
@@ -99,6 +103,11 @@ if(isset($_POST['envoyer']))
 <?php include('footer.php');?>
 
 
+=======
+   
+    <?php include('footer.php');?>
+   
+>>>>>>> 594b0e2b7cc56cde0edac4fdf8cf322589a8d94e
     
 </body>
 </html>
