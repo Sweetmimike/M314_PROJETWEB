@@ -46,10 +46,7 @@ $req->execute(array(
     'email' => $email));
 */
         //  Récupération de l'utilisateur et de son pass hashé
-        $req = $bdd->prepare('SELECT nom, prenom, email, mdp FROM client WHERE email = :email');
-        $req->execute(array(
-            'email' => $_POST['email']));
-        $resultat = $req->fetch();
+
 
 
 
@@ -65,8 +62,11 @@ $req->execute(array(
         //else
         //{
         if(isset($_POST['envoyer']))
-
         {
+            $req = $bdd->prepare('SELECT nom, prenom, email, mdp FROM client WHERE email = :email');
+            $req->execute(array(
+                'email' => $_POST['email']));
+            $resultat = $req->fetch();
 
             $message='';
             if (empty($_POST['email']) || empty($_POST['mdp']) ) //Oublie d'un champ
