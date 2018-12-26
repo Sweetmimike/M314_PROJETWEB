@@ -146,8 +146,13 @@ hr {
 }
 
 .plus {
-	width: 5%;
-    float: right;
+	width: 2%;
+    position: absolute;
+}
+
+.button_panier {
+    position: absolute;
+    margin-left: 50px;
 }
 
 /* INSCRIPTION PAGE */
