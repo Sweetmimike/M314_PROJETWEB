@@ -24,6 +24,8 @@ try {
         <title>Administration</title>
     </head>
     <body>
+        
+        <?php if($_SESSION['email'] != 'admin@gmail.com') {header('Location: index.php');} ?>
 
         <?php include('header.php'); ?>
 
