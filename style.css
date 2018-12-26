@@ -162,6 +162,20 @@ hr {
     font-weight: bold;
 }
 
+
+/* ADMINISTRATION PAGE */
+#modif_produit {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#ajouter_produit {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+ 
+
+
 /* FOOTER */
 
 #footer_hr {
