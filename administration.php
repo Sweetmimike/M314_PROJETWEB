@@ -38,7 +38,7 @@ try {
             if($_GET['action'] == 'client') {
                 $select = $bdd->query('SELECT * FROM client');
                 echo '<h3>Liste des clients</h3>';
-                echo '<table>';
+                echo '<table class="administration_table">';
                 echo '<tr>';
                 echo '<th>Nom</th>';
                 echo '<th>Prenom</th>';
@@ -65,7 +65,7 @@ try {
 
                 $select = $bdd->query('SELECT * FROM produit');
                 echo '<h3>Liste des produits</h3>';
-                echo '<table>';
+                echo '<table class="administration_table">';
                 echo '<tr>';
                 echo '<th>Intitule</th>';
                 echo '<th>Description</th>';
