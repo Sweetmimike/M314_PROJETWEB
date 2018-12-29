@@ -1,4 +1,9 @@
-<?php session_start() ?>
+<?php
+session_start() 
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -19,11 +24,12 @@
         if(!isset($_SESSION['panier'])) {
             creationPanier();
         }
+        //Le panier est vide donc on affiche une phrase
         if(estVide()) {
             echo '<h2> Votre panier est vide :( </h2>';
-        } else {
-            
-        
+        } else {    //Panier non vide => affichage d'une table
+
+
         ?>
         <table class="table">
             <tbody>
@@ -33,9 +39,20 @@
                     <th>Quantite</th>
                 </tr>
             </tbody>
+            <?php
+            $nbProduit = count($_SESSION['panier']['idProduit']);
+            for($i = 0; $i < $nbProduit; $i++) {
+                echo '<tr>';
+                echo '<td>'.$_SESSION['panier']['libelleProduit'][$i].'</td>';
+                echo '<td>'.$_SESSION['panier']['prixProduit'][$i].'</td>';
+                echo '<td>'.$_SESSION['panier']['qteProduit'][$i].'</td>';
+                echo '</tr>';
+            }
+            
+            ?>
 
         </table>
-        
+
         <?php 
         }
         ?>
