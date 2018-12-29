@@ -14,7 +14,7 @@ session_start();
         <title>Connexion</title>
     </head>
     <body>
-        <?php include('header.php');?>
+        <?php include('header.php'); include_once('fonctions_php/fonction_panier.php');?>
 
 
         <section>
@@ -86,12 +86,15 @@ $req->execute(array(
                 $_SESSION['prenom'] = $resultat['prenom'];
                 $_SESSION['email'] = $resultat['email'];
                 $_SESSION['mdp'] = $resultat['mdp'];
+                creationPanier();
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
             }
             //}
         }
+
+        
         ?>
 
         <?php include('footer.php');?>

@@ -13,7 +13,7 @@
             if(isset($_SESSION['nom']) && $_SESSION['email'] == 'admin@gmail.com') {
                 echo '<li class="signitem"><a href="administration.php">Administration</a></li>';
             }
-            echo '<li class="signitem"><a href="#">Mon panier</a></li>';
+            echo '<li class="signitem"><a href="panier.php">Mon panier</a></li>';
             ?>
 
         </ul>		

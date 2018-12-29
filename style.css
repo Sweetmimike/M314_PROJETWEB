@@ -153,7 +153,7 @@ hr {
 }
 
 .button_panier {
-    position: absolute;
+    position: relative;
     margin-left: 50px;
 }
 
