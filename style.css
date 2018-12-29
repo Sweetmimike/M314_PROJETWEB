@@ -69,6 +69,8 @@ nav a {
 nav a:hover {
 	border-bottom: 2px solid black;
 	border-color: #00AAF2;
+    text-decoration: none;
+    color: #515052;
 }
 
 nav ul {
