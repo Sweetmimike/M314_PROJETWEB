@@ -63,7 +63,7 @@ $req->execute(array(
         //{
         if(isset($_POST['envoyer']))
         {
-            $req = $bdd->prepare('SELECT nom, prenom, email, mdp FROM client WHERE email = :email');
+            $req = $bdd->prepare('SELECT * FROM client WHERE email = :email');
             $req->execute(array(
                 'email' => $_POST['email']));
             $resultat = $req->fetch();
@@ -79,13 +79,15 @@ $req->execute(array(
             }
             else if ($_POST['mdp'] = $resultat['mdp']) {
 
-                //$_SESSION['id_client'] = $resultat['id_client'];
-
                 echo 'Vous êtes connecté !';
+                $_SESSION['id_client'] = $resultat['id_client'];
                 $_SESSION['nom'] = $resultat['nom'];
                 $_SESSION['prenom'] = $resultat['prenom'];
                 $_SESSION['email'] = $resultat['email'];
                 $_SESSION['mdp'] = $resultat['mdp'];
+                $_SESSION['rue'] = $resultat['rue'];
+                $_SESSION['ville'] = $resultat['ville'];
+                $_SESSION['pays'] = $resultat['pays'];
                 creationPanier();
             }
             else {

@@ -39,10 +39,10 @@ session_start()
 
             <h3>Espace membre de <?php echo $_SESSION['nom'].' '.$_SESSION['prenom']?></h3>
 
-            <div class="row">
+            <div class="row ">
 
-                <div class="col-2">
-                    <p style="text-align: center">Mes factures</p>
+                <div class="col-3 bg-light">
+                    <p style="text-align: center"><span class="underline_blue">Mes factures</span></p>
 
                     <?php
 
@@ -52,10 +52,10 @@ session_start()
             $i = 1;
             while($s = $req->fetch()) {
                 
-                echo '<h4>Facture '.$i.'</h4>';
+                echo '<h5>Facture '.$i.'</h5>';
                 echo '<ul>';
-                echo '<li>'.s['date'].'</li>';
-                echo '<li>'.s['prix'].'</li>';
+                echo '<li><span class="font-weight-bold">Date : </span>'.$s['date'].'</li>';
+                echo '<li><span class="font-weight-bold">Montant total : </span>'.$s['prix'].' €</li>';
                 echo '</ul>';
                 
                 $i++;
@@ -67,8 +67,8 @@ session_start()
 
                 </div>
 
-                <div class="col-4">
-                    <p style="text-align: center">Mes informations</p>
+                <div class="col-7 bg-light">
+                    <p style="text-align: center"><span class="underline_blue">Mes informations</span></p>
 
                     <?php
 
