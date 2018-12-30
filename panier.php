@@ -19,6 +19,13 @@ session_start()
         <?php include_once('fonctions_php/fonction_panier.php'); ?>
 
         <h3>Mon panier</h3>
+        <?php
+        if(!estVide()) {
+            ?>
+        <p><a href="?action=vider_panier" class="btn btn-danger btn-sm">Vider mon panier</a></p>
+            <?php
+        }
+        ?>
 
         <?php
         if(!isset($_SESSION['panier'])) {
@@ -54,9 +61,22 @@ session_start()
         </table>
 
         <?php 
+            echo '<p><a href="?action=passer_commande" class="btn btn-primary mt-4 mb-4 float-right">Passer ma commande</a>';
         }
         ?>
-
+        
+        <?php
+            if(isset($_GET['action'])) {
+                if($_GET['action'] == 'vider_panier') {
+                    supprimePanier();
+                    header('Location: panier.php');
+                }
+                if($_GET['action'] == 'passer_commande') {
+                    $_SESSION['panier']['verrou'] = true;
+                    header('Location: commande.php');
+                }
+            }
+        ?>
 
         <?php include('footer.php') ?>
 

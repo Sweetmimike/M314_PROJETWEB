@@ -14,7 +14,7 @@ function creationPanier(){
 }
 
 function estVide() {
-    if(isset($_SESSION['panier'])) {
+    if(creationPanier()) {
         if(empty($_SESSION['panier']['libelleProduit'])) {
             return true;
         }
