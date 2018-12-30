@@ -13,7 +13,8 @@ session_start();
     <body>
         <?php include('header.php') ?>
         <?php include_once('fonctions_php/fonction_panier.php'); ?>
-
+        <h3>Récapitulatif de la commande</h3>
+        <hr>
 
         <?php include('footer.php') ?>
     </body>
