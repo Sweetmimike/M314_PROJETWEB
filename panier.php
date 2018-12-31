@@ -38,13 +38,15 @@ session_start()
 
 
         ?>
-        <table class="table">
-            <tbody>
+        <table class="table table-bordered">
+            <thead class="thead-light">
                 <tr>
                     <th>Article</th>
-                    <th>Prix</th>
+                    <th>Prix €</th>
                     <th>Quantite</th>
                 </tr>
+            </thead>
+            <tbody>
 
                 <?php
             $montantTotal = MontantGlobal();
@@ -74,7 +76,7 @@ session_start()
                 header('Location: panier.php');
             }
             if($_GET['action'] == 'passer_commande') {
-                
+
                 header('Location: commande.php');
             }
         }

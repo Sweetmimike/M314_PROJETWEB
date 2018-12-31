@@ -3,10 +3,11 @@
         <ul>
             <?php 
             if(isset($_SESSION['nom']) && isset($_SESSION['prenom'])) {
-                echo '<li class="header_name">Bienvenue '.$_SESSION['prenom'].' '.$_SESSION['nom'].'</li>';
+                echo '<li class="header_name">Bienvenue '.$_SESSION['prenom'].' '.$_SESSION['nom'].' sur Product4U</li>';
                 echo '<li class="signitem"><a href="deconnexion.php">Deconnexion</a></li>';
                 echo '<li class="signitem"><a href="espace_membre.php">Espace membre</a></li>';
             } else {
+                echo '<li class="header_name">Product4U</li>';
                 echo '<li class="signitem"><a href="inscription.php">S\'inscrire</a></li>';
                 echo '<li class="signitem"><a href="connexion.php">Connexion</a></li>';
             }

@@ -37,7 +37,7 @@ body {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-#sign li {
+#sign .signitem{
 	float: right;
 	display: inline;
 	margin: 0 10px 0 10px;
@@ -50,7 +50,10 @@ body {
     font-weight: bold;
     font-size: medium;
     position: absolute;
+    color: white;
+    list-style-type: none;
 }
+
 
 nav {
 	font-size: large;
@@ -192,6 +195,22 @@ hr {
 .underline_blue {
     border-bottom: 2px solid black;
 	border-color: #00AAF2;
+}
+
+#form_modif {
+    display: table;
+}
+
+#form_modif p{
+    display: table-row;
+}
+
+#form_modif label, #form_modif input {
+    display: table-cell;
+}
+
+#form_modif input[type=text]{
+    margin-left: 20px;
 }
  
 
