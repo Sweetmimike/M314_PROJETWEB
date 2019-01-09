@@ -89,6 +89,9 @@ $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         ));
         $p = $recup_quantite->fetch();
         if($p['quantite'] > 0) {
+            //Décrémentation de la quantite dans la bd
+            $req4 = $bdd->prepare("update produit set quantite = quantite-1 where id_produit = :id_produit");
+            $req4->execute(array('id_produit' => $p['id_produit']));
             ajouterArticle($id_produit, $libelle_produit, $quantite, $prix);
         } else {
             echo "Ce produit est actuellement en rupture de stock ... Nous sommes désolé";
