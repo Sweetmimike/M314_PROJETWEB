@@ -22,7 +22,6 @@ session_start()
     } catch(Exception $e) {
 
         die('Erreur : ' . $e ->getMessage());
-
     }
 
         ?>
@@ -55,6 +54,28 @@ session_start()
                 echo '<h5>Facture '.$i.'</h5>';
                 echo '<ul>';
                 echo '<li><span class="font-weight-bold">Date : </span>'.$s['date'].'</li>';
+                echo '<li><span class="font-weight-bold">Article(s) acheté(s) : </li>';
+                echo "<ul>";
+                
+                //affichage des articles achetés
+                $display = $bdd->prepare('select * from facture_details where id_facture = :id_facture');
+                $display->execute(array(
+                    'id_facture' => $s['id_facture']
+                ));
+                while($facture_detail = $display->fetch()) {
+
+                    //recupération des infos de l'article
+                    $select_produit = $bdd->prepare('select * from produit where id_produit = :id_produit');
+                    $select_produit->execute(array(
+                        'id_produit' => $facture_detail['id_produit']
+                    ));
+                    while($produit = $select_produit->fetch()) {
+                        echo '<li>'.$produit['intitule'].' * '.$facture_detail['quantite'].' : '.$facture_detail['prix_total'].'€</li>';
+                    }
+
+                    
+                }
+                echo "</ul>";
                 echo '<li><span class="font-weight-bold">Montant total : </span>'.$s['prix'].' €</li>';
                 echo '</ul>';
 
