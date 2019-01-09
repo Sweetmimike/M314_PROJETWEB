@@ -30,9 +30,9 @@
 
 	if(isset($_POST['envoyer'])) {
 		if(!empty($_POST['email']) && !empty($_POST['objet']) && !empty($_POST['msg'])) {
-			$message = $_POST['msg'];
-			$objet = $_POST['objet'];
-			$expediteur = $_POST['email'];
+			$message = htmlspecialchars($_POST['msg']);
+			$objet = htmlspecialchars($_POST['objet']);
+			$expediteur = htmlspecialchars($_POST['email']);
 			$destinataire = 'aurelien.carpentier@etu.unice.fr';
 			$headers = 'From: '.$expediteur.'\r\n';
 

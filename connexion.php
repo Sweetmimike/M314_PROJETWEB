@@ -7,16 +7,18 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <title>Connexion</title>
-    </head>
-    <body>
-        <?php include('header.php'); include_once('fonctions_php/fonction_panier.php');?>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Connexion</title>
+</head>
+<body>
+    <?php include('header.php'); include_once('fonctions_php/fonction_panier.php');?>
 
-
+    <?php
+    if(!isset($_SESSION['email'])) {
+        ?>
         <section>
             <div id="form-container">
                 <form action="connexion.php" method="post">
@@ -28,11 +30,13 @@ session_start();
         </section>
 
         <?php 
+    } else {
+        echo "<h3>Vous êtes connecté</h3>";
+    }
 
 
 
-
-        $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
+    $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
         // Vérification de la validité des informations
 
         // Hachage du mot de passe
@@ -61,23 +65,25 @@ $req->execute(array(
 }*/
         //else
         //{
-        if(isset($_POST['envoyer']))
-        {
-            $req = $bdd->prepare('SELECT * FROM client WHERE email = :email');
-            $req->execute(array(
-                'email' => $_POST['email']));
-            $resultat = $req->fetch();
+if(isset($_POST['envoyer']))
+{
+    $_POST['email'] = htmlspecialchars($_POST['email']);
+    $_POST['mdp'] = htmlspecialchars($_POST['mdp']);
+    $req = $bdd->prepare('SELECT * FROM client WHERE email = :email');
+    $req->execute(array(
+        'email' => $_POST['email']));
+    $resultat = $req->fetch();
 
-            $message='';
+    $message='';
             if (empty($_POST['email']) || empty($_POST['mdp']) ) //Oublie d'un champ
             {
                 $message = '<p>une erreur s\'est produite pendant votre identification.
-	Vous devez remplir tous les champs</p>';
+                Vous devez remplir tous les champs</p>';
                 echo $message;
 
 
             }
-            else if ($_POST['mdp'] = $resultat['mdp']) {
+            else if ($_POST['mdp'] == $resultat['mdp']) {
 
                 echo 'Vous êtes connecté !';
                 $_SESSION['id_client'] = $resultat['id_client'];
@@ -89,6 +95,7 @@ $req->execute(array(
                 $_SESSION['ville'] = $resultat['ville'];
                 $_SESSION['pays'] = $resultat['pays'];
                 creationPanier();
+                header('Location: connexion.php');
             }
             else {
                 echo 'Mauvais identifiant ou mot de passe !';
@@ -102,4 +109,4 @@ $req->execute(array(
         <?php include('footer.php');?>
 
     </body>
-</html>
+    </html>

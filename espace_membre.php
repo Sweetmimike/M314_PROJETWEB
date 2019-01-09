@@ -175,13 +175,12 @@ session_start()
 
         //insertions des nouvelles valeurs
         if(isset($_POST['send_modif'])) {
-            $nom = $_POST['nom'];
-            echo $nom;
-            $prenom = $_POST['prenom'];
-            $mdp = $_POST['mdp'];
-            $rue = $_POST['rue'];
-            $ville = $_POST['ville'];
-            $pays = $_POST['pays'];
+            $nom = htmlspecialchars($_POST['nom']);
+            $prenom = htmlspecialchars($_POST['prenom']);
+            $mdp = htmlspecialchars($_POST['mdp']);
+            $rue = htmlspecialchars($_POST['rue']);
+            $ville = htmlspecialchars($_POST['ville']);
+            $pays = htmlspecialchars($_POST['pays']);
 
             $id_client = $_SESSION['id_client'];
 
