@@ -126,9 +126,7 @@ session_start();
                     'quantite' => $_SESSION['panier']['qteProduit'][$i]
                 ));
 
-                //Décrémentation de la quantite dans la bd
-                $req4 = $bdd->prepare("update produit set quantite = quantite-1 where id_produit = :id_produit");
-                $req4->execute(array('id_produit' => $_SESSION['panier']['idProduit'][$i]));
+                
             }
 
                     supprimePanier();

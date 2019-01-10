@@ -1,11 +1,10 @@
 
 
 <?php 
-
+include_once('fonctions_php/fonction_bdd.php');
 session_start();
 
-$bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
-$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$bdd = connectLocalhost();
 
 ?>
 
@@ -22,7 +21,9 @@ $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 <body>
 
     <?php include('header.php'); ?>
-    <?php include_once('fonctions_php/fonction_panier.php'); ?>
+    <?php 
+    include_once('fonctions_php/fonction_panier.php'); 
+    ?>
 
     <section>
         <table id="table-produit">
