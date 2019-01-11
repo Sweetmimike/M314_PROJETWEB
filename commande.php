@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once('fonctions_php/fonction_bdd.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,8 +27,10 @@ session_start();
 
 
         <?php
-        } else {
-
+        } else if(isset($_POST['valider_commande'])){
+            $rue = htmlspecialchars($_POST['rue']);
+            $ville = htmlspecialchars($_POST['ville']);
+            $pays = htmlspecialchars($_POST['pays']);
 
 
         ?>
@@ -67,7 +70,7 @@ session_start();
                     <p><span class="font-weight-bold">Pour un montant total de :</span> <?php echo $montantTotal.'€'; ?></p>
                     <p>
                         La commande sera livrée à l'adresse renseignée dans vos informations : <br>
-                        <?php echo '<span class="font-weight-bold">'.$_SESSION['rue']. ' à ' .$_SESSION['ville']. ' en ' .$_SESSION['pays'].'</span>'; ?>
+                        <?php echo '<span class="font-weight-bold">'.$rue. ' à ' .$ville. ' en ' .$pays.'</span>'; ?>
 
                     </p>
                     <p>Un mail concernant le récapitulatif de la commande va vous être envoyé.</p>
@@ -98,19 +101,11 @@ session_start();
 
 
             //insertion des infos dans la base de données : 
-            try {
-
-                $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
-                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch(Exception $e) {
-
-                die('Erreur : ' . $e ->getMessage());
-
-            }
+            $bdd = connectLocalhost();
             $idClient = $_SESSION['id_client'];
             $date = date("Y-m-d H:i:s");
             echo $date;
-            $req = $bdd->prepare("insert into facture (date, prix, id_client) values(now(), $montantTotal, $idClient)");
+            $req = $bdd->prepare("insert into facture (laDate, prix, id_client) values(now(), $montantTotal, $idClient)");
             $req->execute();
 
             $req2 = $bdd->query("select * from facture where id_client = $idClient order by id_facture DESC limit 0,1");

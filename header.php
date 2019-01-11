@@ -23,7 +23,7 @@
         <ul id="navbar">
             <li class="navitem"><a href="index.php">Accueil</a></li>
             <li class="navitem"><a href="produits.php">Produits</a></li>
-            <li class="navitem"><a href="contact.php">Contact</a></li>
+            <li class="navitem"><a href="contact.php">Support</a></li>
         </ul>
     </nav>
 </header>

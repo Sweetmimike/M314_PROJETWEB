@@ -1,4 +1,4 @@
-/* Blue color : #00AAF2 */
+/* Blue color : #0072FF */
 /* Grey color : #5f5f5f */
 
 /*	GENERAL  */
@@ -33,7 +33,7 @@ body {
 	display: block;
 	float: right;
 	margin: 10px 0 10px 0;
-	background-color: #00AAF2;
+	background-color: #0072FF;
 	padding: 20px;
 	width: 100%;
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
@@ -73,7 +73,7 @@ nav a {
 
 nav a:hover {
 	border-bottom: 2px solid black;
-	border-color: #00AAF2;
+	border-color: #0072FF;
     text-decoration: none;
     color: #515052;
 }
@@ -89,13 +89,13 @@ nav li {
 	margin: 0 20px 0 20px;
 }
 
-hr {
+/* hr {
 	width: 65%;
 	height: 1px;
 	color: #606060;
 	background-color: #606060;
 	border: none;
-}
+} */
 
 
 /*	CONTACT PAGE  */
@@ -222,6 +222,10 @@ hr {
 #footer_hr {
     margin-top: 40px;
     clear: both;
+}
+
+footer {
+	font-size: small;
 }
 
 

@@ -1,6 +1,6 @@
 <?php 
-session_start() 
-
+session_start();
+include_once('fonctions_php/fonction_bdd.php');
 
 ?>
 <!DOCTYPE html>
@@ -15,14 +15,7 @@ session_start()
     <body>
 
         <?php
-    try {
-
-        $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(Exception $e) {
-
-        die('Erreur : ' . $e ->getMessage());
-    }
+    $bdd = connectLocalhost();
 
         ?>
 
@@ -38,9 +31,9 @@ session_start()
 
             <h3>Espace membre de <?php echo $_SESSION['nom'].' '.$_SESSION['prenom']?></h3>
 
-            <div class="row ">
+            <div class="row">
 
-                <div class="col-3 bg-light">
+                <div class="col-3 bg-light border rounded shadow-sm">
                     <p style="text-align: center"><span class="underline_blue">Mes factures</span></p>
 
                     <?php
@@ -53,7 +46,7 @@ session_start()
 
                 echo '<h5>Facture '.$i.'</h5>';
                 echo '<ul>';
-                echo '<li><span class="font-weight-bold">Date : </span>'.$s['date'].'</li>';
+                echo '<li><span class="font-weight-bold">Date : </span>'.$s['laDate'].'</li>';
                 echo '<li><span class="font-weight-bold">Article(s) acheté(s) : </li>';
                 echo "<ul>";
                 
@@ -88,7 +81,7 @@ session_start()
 
                 </div>
 
-                <div class="col-7 bg-light pb-3">
+                <div class="col-7 bg-light pb-3 border rounded shadow-sm">
                     <p style="text-align: center"><span class="underline_blue">Mes informations</span></p>
 
                     <?php

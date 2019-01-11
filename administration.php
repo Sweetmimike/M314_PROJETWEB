@@ -1,16 +1,8 @@
 <?php 
 
 session_start();
-
-try {
-
-    $bdd = new PDO('mysql:host=localhost;dbname=projet_php;charset=utf8', 'root', '');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(Exception $e) {
-
-    die('Erreur : ' . $e ->getMessage());
-
-}
+include_once('fonctions_php/fonction_bdd.php');
+$bdd = connectLocalhost();
 
 ?>
 
@@ -33,10 +25,13 @@ try {
 
     <h2>Bienvenue sur la page d'administration</h2>
     <p>Ici vous pouvez gérer les comptes client, les produits ainsi que les fournisseurs.</p>
-
-    <a href="?action=client">Action sur les clients</a>
-    <a href="?action=produit">Action sur les produits</a>
-    <a href="?action=fournisseur">Action sur les fournisseurs</a>
+    
+    <div class="btn-group">
+        <a href="?action=client" class="btn btn-primary">Action sur les clients</a>
+        <a href="?action=produit" class="btn btn-primary">Action sur les produits</a>
+        <a href="?action=fournisseur" class="btn btn-primary">Action sur les fournisseurs</a>
+        <a href="comptabilite.php" class="btn btn-dark">Comptabilité</a>
+    </div>
 
     <?php 
     if(isset($_GET['action'])) {
@@ -98,8 +93,6 @@ try {
         }
         else if($_GET['action'] == 'produit') {
 
-            
-
             $select = $bdd->query('SELECT * FROM produit');
             echo "<div class='container-fluid w-75 p-3 mt-3 bg-f3 border rounded'>";
             echo '<h3>Liste des produits</h3>';
@@ -109,6 +102,7 @@ try {
             echo '<th>Intitule</th>';
             echo '<th>Description</th>';
             echo '<th>Quantite</th>';
+            echo '<th>Categorie</th>';
             echo '<th>Action</th>';
             echo '</tr>';
             echo "</thead>";
@@ -119,6 +113,7 @@ try {
                 echo '<td>'.$s['intitule'].'</td>';
                 echo '<td>'.$s['description'].'</td>';
                 echo '<td>'.$s['quantite'].'</td>';
+                echo '<td>'.$s['nom_categorie'].'</td>';
                 echo '<td><a href="?action=delete_produit&id_produit='.$s['id_produit'].'">Supprimer</a> / <a href="?action=modifier_produit&id_produit='.$s['id_produit'].'">Modifier</a></td>';
                 echo '</tr>';
             }
@@ -166,12 +161,13 @@ try {
             ?>
             <!-- formulaire de modification -->
             <form action="administration.php" method="post" id="modif_produit">
+                <label for="id_produit">Id du produit :</label><input type="text" name="id_produit" value="<?php echo $s['id_produit']?>" readonly><br> <!-- Readonly car l'id ne doit pas etre modifiable, juste pour qu'il soit envoyer pour faire les modif après -->
                 <label for="intitule">Intitule :</label><input type="text" name="intitule" value="<?php echo $s['intitule']?>"><br>
                 <label for="description">Description :</label><input type="text" name="description" value="<?php echo $s['description']?>"><br>
-                <label for="prix_ht">Prix ht :</label><input type="text" name="prix_ht" value="<?php echo $s['prix_ht']?>"><br>
                 <label for="prix_ttc">Prix ttc :</label><input type="text" name="prix_ttc" value="<?php echo $s['prix_ttc']?>"><br>
                 <label for="quantite">Quantite :</label><input type="text" name="quantite" value="<?php echo $s['quantite']?>"><br>
-                <label for="id_produit">Id du produit :</label><input type="text" name="id_produit" value="<?php echo $s['id_produit']?>" readonly><br> <!-- Readonly car l'id ne doit pas etre modifiable, juste pour qu'il soit envoyer pour faire les modif après -->
+                <label for="nom_categorie">Categorie :</label><input type="text" name="nom_categorie" value="<?php echo $s['nom_categorie']?>"><br>
+                
                 <input type="submit" value="Valider" name="valider_modif"><br>
             </form>
 
@@ -179,13 +175,10 @@ try {
         }
         else if($_GET['action'] == 'ajouter_produit') {
             ?>
-
-
             <!-- formulaire d'ajout -->
             <form action="administration.php" method="post" id="ajouter_produit">
                 <label for="intitule">Intitule : </label><input type="text" name="intitule"><br>
                 <label for="description">Description : </label><input type="text" name="description" ><br>
-                <label for="prix_ht">Prix ht : </label><input type="text" name="prix_ht" ><br>
                 <label for="prix_ttc">Prix ttc : </label><input type="text" name="prix_ttc" ><br>
                 <label for="quantite">Quantite : </label><input type="text" name="quantite" ><br>
                 <label for="id_fournisseur">Fournisseur : </label>
@@ -200,23 +193,24 @@ try {
 
                     ?>
                 </select><br>
+                <label for="nom_categorie">Categorie : </label><input type="text" name="nom_categorie"><br>
                 <input type="submit" value="Valider" name="valider_ajout"><br>
             </form>
 
 
             <?php
-        }
+        } 
     }
 
 
     if(isset($_POST['valider_modif'])) {
         $update = $bdd->prepare('update produit 
-            set intitule = :intitule, description = :description, prix_ht = :prix_ht, prix_ttc = :prix_ttc, quantite = :quantite 
+            set intitule = :intitule, description = :description, prix_ttc = :prix_ttc, quantite = :quantite , nom_categorie = :nom_categorie
             where id_produit = :id_produit');
         $update->execute(array(
             'intitule' => $_POST['intitule'],
             'description' => $_POST['description'],
-            'prix_ht' => $_POST['prix_ht'],
+            'nom_categorie' => $_POST['nom_categorie'],
             'prix_ttc' => $_POST['prix_ttc'],
             'quantite' => $_POST['quantite'],
             'id_produit' => $_POST['id_produit']
@@ -225,13 +219,13 @@ try {
 
     if(isset($_POST['valider_ajout'])) {
         if(!empty($_POST['intitule']) && !empty($_POST['description']) && !empty($_POST['prix_ht']) 
-         && !empty($_POST['prix_ttc']) && !empty($_POST['quantite']) && !empty($_POST['id_fournisseur']) ) {
+           && !empty($_POST['prix_ttc']) && !empty($_POST['quantite']) && !empty($_POST['id_fournisseur']) ) {
 
-            $insert = $bdd->prepare('insert into produit (intitule, description, prix_ht, prix_ttc, quantite, id_fournisseur) values(:intitule, :description, :prix_ht, :prix_ttc, :quantite, :id_fournisseur) ');
+            $insert = $bdd->prepare('insert into produit (intitule, description, prix_ttc, quantite, id_fournisseur, nom_categorie) values(:intitule, :description, :prix_ttc, :quantite, :id_fournisseur, :nom_categorie) ');
         $insert->execute(array(
             'intitule' => $_POST['intitule'],
             'description' => $_POST['description'],
-            'prix_ht' => $_POST['prix_ht'],
+            'nom_categorie' => $_POST['nom_categorie'],
             'prix_ttc' => $_POST['prix_ttc'],
             'quantite' => $_POST['quantite'],
             'id_fournisseur' => $_POST['id_fournisseur']

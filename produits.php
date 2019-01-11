@@ -30,7 +30,9 @@ $bdd = connectLocalhost();
             <tr>
                 <th>Nom</th>
                 <th>Description</th>
+                <th>Categorie</th>
                 <th>Prix €</th>
+
             </tr>
             <?php 
 
@@ -43,8 +45,10 @@ $bdd = connectLocalhost();
                 echo '<tr>';
                 echo '<td>'.$item['intitule'].'</td>';
                 echo '<td>'.$item['description'].'</td>';
+                echo '<td>'.$item['nom_categorie'].'</td>';
                 echo '<td>'.$item['prix_ttc'].'<a href="?action=ajouter_panier&idProduit='.$item['id_produit'].'&libelleProduit='.$item['intitule'].
-                '&qteProduit=1&prixProduit='.$item['prix_ttc'].'" class="btn btn-primary btn-sm button_panier" id="ajouter_panier">ajouter au panier</a></td>';
+                '&qteProduit=1&prixProduit='.$item['prix_ttc'].'" class="btn btn-primary btn-sm button_panier float-r" id="ajouter_panier">ajouter au panier</a></td>';
+                
                 echo '</tr>';
             }
             $produits->closeCursor();
